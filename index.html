@@ -17,12 +17,14 @@
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ overflow-x: hidden; }
 
   body{
     background: var(--bg);
     color: var(--fg);
     font-family: 'Inter', sans-serif;
     line-height: 1.5;
+    overflow-x: hidden;
   }
 
   a{ color: inherit; text-decoration: none; }
@@ -47,6 +49,71 @@
   /* HERO */
   .hero{
     padding: 50px 0 0;
+    position: relative;
+    overflow: visible;
+  }
+  .hero-orb{
+    position: absolute; top: 110px; right: 120px; width: 60px; height: 60px;
+    pointer-events: none; z-index: 4;
+    background: radial-gradient(circle at 32% 32%, #ffe1a8, #c8391f 45%, #4b6a8f 75%, transparent 100%);
+    filter: blur(8px) hue-rotate(0deg);
+    opacity: 0.8;
+    animation: orbHue 9s linear infinite, orbPulse 4.5s ease-in-out infinite, orbLiquid 6s ease-in-out infinite;
+  }
+  @keyframes orbHue{
+    0%{ filter: blur(8px) hue-rotate(0deg); }
+    100%{ filter: blur(8px) hue-rotate(360deg); }
+  }
+  @keyframes orbPulse{
+    0%, 100%{ transform: scale(0.85); opacity: 0.65; }
+    50%{ transform: scale(1.45); opacity: 0.95; }
+  }
+  @keyframes orbLiquid{
+    0%, 100%{ border-radius: 42% 58% 63% 37% / 55% 44% 56% 45%; }
+    25%{ border-radius: 60% 40% 45% 55% / 40% 62% 38% 60%; }
+    50%{ border-radius: 48% 52% 38% 62% / 62% 48% 52% 38%; }
+    75%{ border-radius: 55% 45% 58% 42% / 45% 55% 40% 60%; }
+  }
+  @media (max-width: 900px){ .hero-orb{ display:none; } }
+  .hero-photo-trigger{
+    position: absolute; top: 40px; right: 0; width: 45%; height: 520px;
+    z-index: 5;
+  }
+  .hero-photo-reveal{
+    position: absolute; top: 20px; right: 30px; width: 200px; z-index: 8;
+    border-radius: 6px; box-shadow: 0 24px 60px rgba(23,21,15,0.28);
+    transform: translateX(120vw) rotate(-7deg);
+    transition: transform .55s cubic-bezier(.16,.84,.24,1);
+    pointer-events: none;
+  }
+  .hero-photo-reveal img{ width:100%; display:block; border-radius:6px; }
+  .hero-photo-reveal2{
+    position: absolute; top: 280px; right: 190px; width: 220px; z-index: 7;
+    border-radius: 6px; box-shadow: 0 24px 60px rgba(23,21,15,0.28);
+    transform: translateX(120vw) rotate(7deg);
+    transition: transform .55s cubic-bezier(.16,.84,.24,1) .06s;
+    pointer-events: none;
+  }
+  .hero-photo-reveal2 img{ width:100%; display:block; border-radius:6px; }
+  .hero-photo-reveal3{
+    position: absolute; top: 330px; right: 20px; width: 240px; z-index: 6;
+    border-radius: 6px; box-shadow: 0 24px 60px rgba(23,21,15,0.28);
+    transform: translateX(120vw) rotate(-4deg);
+    transition: transform .55s cubic-bezier(.16,.84,.24,1) .12s;
+    pointer-events: none;
+  }
+  .hero-photo-reveal3 img{ width:100%; display:block; border-radius:6px; }
+  .hero-photo-trigger:hover ~ .hero-photo-reveal{
+    transform: translateX(0) rotate(-6deg);
+  }
+  .hero-photo-trigger:hover ~ .hero-photo-reveal2{
+    transform: translateX(0) rotate(6deg);
+  }
+  .hero-photo-trigger:hover ~ .hero-photo-reveal3{
+    transform: translateX(0) rotate(-4deg);
+  }
+  @media (max-width: 900px){
+    .hero-photo-trigger, .hero-photo-reveal, .hero-photo-reveal2, .hero-photo-reveal3{ display:none; }
   }
   .hero h1{
     font-family:'Archivo'; font-weight:900; letter-spacing:-0.02em;
@@ -166,7 +233,7 @@
     gap: 28px 24px;
   }
   #cinema .work-grid{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  #social .work-grid{ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  #social .work-grid{ grid-template-columns: repeat(3, 1fr); }
   .project .p-thumb{ aspect-ratio: 4/5; }
   .p-caption{ font-family:'Special Elite', monospace; font-size:11px; margin-bottom:0; margin-top:14px;
     display:flex; justify-content:space-between; text-transform:uppercase; letter-spacing:0.01em;
@@ -251,6 +318,11 @@
 <div class="wrap">
 
   <section class="hero">
+    <div class="hero-orb"></div>
+    <div class="hero-photo-trigger"></div>
+    <div class="hero-photo-reveal"><img src="images/hero-portrait.webp" alt="Valeria De Rosa"></div>
+    <div class="hero-photo-reveal2"><img src="images/hero-portrait2.webp" alt="Valeria De Rosa dietro la camera"></div>
+    <div class="hero-photo-reveal3"><img src="images/hero-portrait3.webp" alt="Valeria De Rosa sul set con la troupe"></div>
     <h1><span class="serif-accent">Valeria De Rosa</span></h1>
     <p class="hero-sub">I build, shoot, and edit high-converting short-form videos — combining sharp direct-response pacing, dynamic typography, and generative AI workflows with the visual polish of traditional cinematography and studio photography. From directing and camera work on set to post-production, I manage the full workflow end-to-end. I move fast: daily publishing schedules, high-volume batch edits, and testing multiple hook variations per campaign are part of my standard week. I design for retention, conversion, and real output — without sacrificing visual standard.</p>
   </section>
@@ -343,14 +415,14 @@
   <div class="ai-scroll-row">
 <div class="scroll-gallery-wrap">
       <div class="scroll-gallery" id="ai-scroll-2">
-        <div class="scroll-item"><img src="images/img019.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img020.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img021.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img022.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img023.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img024.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img025.webp" alt="AI editorial" loading="lazy"></div>
-        <div class="scroll-item"><img src="images/img026.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_01.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_02.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_03.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_04.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_05.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_06.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_07.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/ed_new_08.webp" alt="AI editorial" loading="lazy"></div>
       </div>
       <div class="scroll-arrows">
         <button class="scroll-arrow" onclick="document.getElementById('ai-scroll-2').scrollBy({left:-300,behavior:'smooth'})" aria-label="Scroll left">←</button>
@@ -476,8 +548,10 @@
         <div class="skill-item">Photoshop AI</div>
         <div class="skill-item">Runway Gen-3</div>
         <div class="skill-item">Sora 2</div>
-        <div class="skill-item">Kling 1.6</div>
+        <div class="skill-item">Kling 3.0</div>
         <div class="skill-item">Google Veo 3</div>
+        <div class="skill-item">Seedance</div>
+        <div class="skill-item">ElevenLabs <span style="font-style:normal;">(AI voiceover)</span></div>
       </div>
       <div>
         <div class="skills-label">AI Pipeline &amp; Prompting</div>
@@ -491,18 +565,20 @@
         <div class="skill-item">Direct Response Video Editing &amp; SFX</div>
         <div class="skill-item">Adobe Premiere Pro</div>
         <div class="skill-item">DaVinci Resolve</div>
+        <div class="skill-item">CapCut</div>
         <div class="skill-item">After Effects</div>
         <div class="skill-item">Photoshop, Lightroom, InDesign, Illustrator</div>
       </div>
       <div>
         <div class="skills-label">Camera &amp; Analog</div>
-        <div class="skill-item">BMPCC, RED, Sony, Canon</div>
+        <div class="skill-item">BMPCC, RED, Sony, Canon, Panasonic</div>
         <div class="skill-item">Canon AE1, Rolleicord, Yashica</div>
       </div>
       <div>
         <div class="skills-label">Creative Coding &amp; Strategy</div>
         <div class="skill-item">Resolume Arena, Processing</div>
         <div class="skill-item">Short-form strategy<span class="note">social analytics, newsletter layout &amp; visuals</span></div>
+        <div class="skill-item">Notion <span style="font-style:normal;">(workflow &amp; briefs)</span></div>
       </div>
       <div>
         <div class="skills-label">Languages</div>
