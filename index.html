@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeria De Rosa — Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@1,500&family=Archivo:wght@500;900&family=Inter:wght@400;500;600&family=Special+Elite&display=swap');
+
+  :root{
+    --bg: #f5f5f0;
+    --bg-raised: #eae9e2;
+    --fg: #17150f;
+    --muted: #767268;
+    --accent: #c8391f;
+    --line: rgba(23,21,15,0.14);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{ max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 24px 32px;
+    position: sticky; top:0; background: rgba(245,245,240,0.94);
+    z-index: 10;
+  }
+  .logo{ font-family:'Archivo'; font-weight:900; font-size:17px; letter-spacing:-0.01em; }
+  .logo em{ font-family:'Fraunces'; font-style:italic; font-weight:500; }
+  .nav-links{ font-family:'Inter'; font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; }
+  .nav-links a{ margin-right: 22px; }
+  .nav-links a.on{ color:var(--fg); font-weight:600; }
+  .nav-links a:hover{ color:var(--fg); }
+  .cta-link{ font-family:'Inter'; font-size:13px; text-decoration:underline; text-underline-offset:3px; }
+
+  /* HERO */
+  .hero{
+    padding: 50px 0 0;
+  }
+  .hero h1{
+    font-family:'Archivo'; font-weight:900; letter-spacing:-0.02em;
+    font-size: clamp(48px, 9vw, 108px);
+    line-height: 0.95;
+    display:flex; align-items:baseline; flex-wrap:wrap;
+  }
+  .serif-accent{ font-family:'Fraunces'; font-style:italic; font-weight:500; letter-spacing:0; color: inherit; }
+  .hero h1 .serif-accent{ letter-spacing:0; }
+  .hero-role-scroll{
+    overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;
+    padding: 200px 0 70px; margin: 0;
+    mask-image: linear-gradient(to right, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 92%, transparent 100%);
+  }
+  .hero-role-scroll::-webkit-scrollbar{ display:none; }
+  .hero-role-track{
+    font-family:'Inter'; font-weight:600; text-transform:uppercase; letter-spacing:0.02em;
+    font-size: clamp(38px, 7.5vw, 84px); line-height:1; color:var(--fg); opacity:0.2;
+    white-space:nowrap; display:inline-block; padding: 0 32px 0 32px;
+  }
+  .hero-role-track .sep{ opacity:0.6; margin:0 0.35em; }
+  .hero-sub{
+    font-family:'Special Elite', monospace; font-size:13px; color:var(--muted); max-width:460px;
+    margin-top: 18px; letter-spacing:0.01em;
+  }
+  .showreel{ padding: 100px 0 10px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .showreel-frame{
+    position:relative; width:100%; max-width:720px; aspect-ratio:16/9;
+    border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    background: var(--bg-raised); box-shadow: 0 10px 34px rgba(23,21,15,0.10);
+  }
+  .showreel-thumb{ width:100%; height:100%; object-fit:cover; display:block; transition: transform .5s ease; }
+  .showreel-link:hover .showreel-thumb{ transform: scale(1.035); }
+  .play-button{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:68px; height:68px; border-radius:50%; background: transparent;
+    border: 2px solid #fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.28); transition: transform .25s ease;
+  }
+  .play-button svg{ width:22px; height:22px; margin-left:3px; }
+  .showreel-link:hover .play-button{ transform:translate(-50%,-50%) scale(1.08); }
+  .showreel-caption{
+    font-family:'Special Elite', monospace; font-size:13px; color:var(--muted);
+    margin-top:16px; letter-spacing:0.01em;
+  }
+  .section-head{ padding: 130px 0 60px; }
+  .section-head h2{
+    font-family:'Archivo'; font-weight:900; letter-spacing:-0.02em;
+    font-size: clamp(34px, 5.5vw, 64px); line-height:0.95;
+    display:flex; align-items:baseline; flex-wrap:wrap;
+  }
+  .section-head p{ font-family:'Inter'; font-size:15px; color:#4a4640; max-width:560px; line-height:1.6; margin-top:14px; }
+  .section-block{ }
+
+  /* SCROLL GALLERY */
+  .ai-workflow-banner{ margin-bottom: 60px; }
+  .ai-workflow-banner img{ width:100%; display:block; border-radius: 14px; }
+  .ai-workflow-caption{
+    font-family:'Special Elite', monospace; font-size:12px; color:var(--muted);
+    margin-top: 12px; letter-spacing:0.01em;
+  }
+  .scroll-gallery-wrap{ position:relative; margin-bottom: 90px; }
+
+  .masonry-grid{ column-count: 5; column-gap: 8px; margin: 20px 0 90px; }
+  .social-thumb{
+    width:100%; padding:0 !important; overflow:hidden; border-radius: 14px;
+  }
+  .masonry-grid img{ width:100%; display:block; margin-bottom: 8px; border-radius: 14px; }
+  @media (max-width: 700px){
+    .masonry-grid{ column-count: 3; }
+  }
+  .ai-scroll-row{ display:flex; gap:24px; align-items:flex-start; }
+  .ai-project-info{ margin-top:40px; padding-top:0; }
+  .ai-project-info h3{ font-family:'Inter'; font-weight:600; font-size:17px; margin-bottom:10px; }
+  .photo-project-info{ margin: 0 0 40px; }
+  .photo-project-info h3{ font-family:'Inter'; font-weight:600; font-size:16px; margin-bottom:6px; }
+  .photo-project-info span{ font-family:'Special Elite', monospace; font-size:13px; color:var(--muted); letter-spacing:0.01em; }
+  .ai-project-info p{ font-family:'Inter'; font-size:15px; color:#4a4640; max-width:560px; line-height:1.6; margin-bottom:16px; }
+  .ai-project-meta{ display:flex; gap:28px; font-family:'Special Elite', monospace; font-size:12px; color:var(--muted); }
+  .ai-project-meta span b{ color:var(--fg); font-weight:400; display:block; font-size:10px; letter-spacing:0.06em; margin-bottom:3px; }
+  .ai-scroll-row .scroll-gallery-wrap{ flex:1; min-width:0; margin-bottom:0; }
+  .ai-side-image{ flex: 0 0 320px; }
+  .ai-side-image img{ width:100%; aspect-ratio: 3/4; object-fit:cover; display:block; border-radius: 14px; }
+  .ai-side-image video{ width:100%; aspect-ratio: 3/4; object-fit:cover; display:block; border-radius: 14px; background:#000; }
+  .ai-scroll-row .ai-project-info{ flex:1; min-width:0; margin-top:0; padding-top:0; border-top:none; }
+  .ai-side-image .ai-workflow-caption{ margin-top:12px; }
+  @media (max-width: 900px){
+    .ai-scroll-row{ flex-direction:column; }
+    .ai-side-image{ flex-basis:auto; width:100%; }
+  }
+  .scroll-gallery{
+    display:flex; gap: 20px; overflow-x:auto; scroll-behavior:smooth;
+    scroll-snap-type: x mandatory; padding-bottom: 8px;
+    -ms-overflow-style: none; scrollbar-width: none;
+  }
+  .scroll-gallery::-webkit-scrollbar{ display:none; }
+  .scroll-item{
+    flex: 0 0 260px; scroll-snap-align: start; border-radius: 14px; overflow:hidden;
+    aspect-ratio: 3/4; background: var(--bg-raised);
+  }
+  .scroll-item img, .scroll-item video{ width:100%; height:100%; object-fit:cover; display:block; }
+  .scroll-arrows{ display:flex; gap:10px; margin-top:16px; justify-content:flex-end; }
+  .scroll-arrow{
+    width:36px; height:36px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-family:'Inter'; font-size:16px; background:transparent; color:var(--fg);
+    transition: background 0.2s;
+  }
+  .scroll-arrow:hover{ background: var(--bg-raised); }
+
+  /* WORK — uniform aligned grid */
+  .work{ padding: 0 0 120px; }
+  .work-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    gap: 28px 24px;
+  }
+  #cinema .work-grid{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  #social .work-grid{ grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .project .p-thumb{ aspect-ratio: 4/5; }
+  .p-caption{ font-family:'Special Elite', monospace; font-size:11px; margin-bottom:0; margin-top:14px;
+    display:flex; justify-content:space-between; text-transform:uppercase; letter-spacing:0.01em;
+  }
+  .p-caption .title{ font-weight:600; }
+  .p-caption .year{ color:var(--muted); font-weight:400; }
+  .p-thumb{
+    width:100%; border-radius: 14px; overflow:hidden; position:relative;
+    background: repeating-linear-gradient(135deg, #e2e0d7, #e2e0d7 10px, #d8d6cb 10px, #d8d6cb 20px);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Inter'; font-size:10px; color:var(--muted); text-align:center;
+    padding: 10px;
+  }
+  .p-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .project-link{ position:absolute; inset:0; width:100%; height:100%; cursor:pointer; }
+  .link-overlay{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    background: rgba(23,21,15,0); backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
+    opacity:0; transition: opacity .3s ease, background .3s ease, backdrop-filter .3s ease;
+  }
+  .project-link:hover .link-overlay{
+    opacity:1; background: rgba(23,21,15,0.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .link-play{
+    width:54px; height:54px; border-radius:50%; border:2px solid #fff;
+    display:flex; align-items:center; justify-content:center;
+    transform: scale(0.8); transition: transform .3s ease;
+  }
+  .project-link:hover .link-play{ transform: scale(1); }
+  .link-play svg{ width:18px; height:18px; margin-left:2px; }
+  .p-meta{ display:none; }
+  .p-desc-text{ font-family:'Inter'; font-size:12px; color:var(--muted); line-height:1.5; margin-top:8px; }
+  .p-desc-meta{ font-family:'Special Elite', monospace; font-size:11px; color:var(--muted); margin-top:8px; letter-spacing:0.01em; line-height:1.6; }
+  .p-desc-results{ font-family:'Inter'; font-weight:700; font-size:12px; color:var(--fg); margin-top:8px; letter-spacing:0.01em; }
+  .p-desc-meta b{ color:var(--fg); font-weight:400; }
+
+  @media (max-width: 900px){
+    .work-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px){
+    .work-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 900px){
+    nav{ flex-direction:column; gap:12px; align-items:flex-start; }
+  }
+
+  /* SKILLS */
+  .about{ padding: 110px 0; }
+  .about h2{ font-family:'Archivo'; font-weight:900; letter-spacing:-0.01em; font-size: clamp(26px,3.4vw,38px); text-transform:uppercase; margin-bottom:40px; }
+  .about > p{ font-size:15px; font-family:'Inter'; color: #4a4640; max-width: 560px; line-height:1.6; margin-bottom:56px; }
+  .skills-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:50px 60px; }
+  .skills-label{ font-family:'Inter'; font-weight:700; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  .skill-item{ font-family:'Special Elite', monospace; font-size:13px; color:var(--fg); padding:11px 0; letter-spacing:0.01em; border-bottom:1px solid var(--line); }
+  .skill-item:first-of-type{ padding-top:0; }
+  .skill-item:last-child{ border-bottom:none; }
+  .skill-item .note{ display:block; font-family:'Inter'; font-size:11px; color:var(--muted); margin-top:5px; letter-spacing:0.01em; }
+  @media (max-width:900px){ .skills-grid{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width:600px){ .skills-grid{ grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  footer{
+    padding: 40px 32px 60px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer .big{ font-family:'Archivo'; font-weight:900; letter-spacing:-0.01em; font-size: clamp(24px,4vw,44px); text-transform:uppercase; }
+  footer .links{ font-family:'Inter'; font-size:12px; color:var(--muted); display:flex; gap:20px; }
+  footer .links a:hover{ color:var(--fg); }
+  .copyright{ text-align:center; padding:18px 32px; font-family:'Inter'; font-size:11px; letter-spacing:0.06em; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">V.DE<em>rosa</em></div>
+  <div class="nav-links">
+    <a href="#social" class="on">Social</a> <a href="#ai">AI</a> <a href="#cinema">Cinema</a> <a href="#photography">Photography</a> <a href="#skills">Skills</a> <a href="#contact">Contacts</a>
+  </div>
+  <a href="mailto:valeriaderosa029@gmail.com" class="cta-link">Send me a message</a>
+</nav>
+
+<div class="wrap">
+
+  <section class="hero">
+    <h1><span class="serif-accent">Valeria De Rosa</span></h1>
+    <p class="hero-sub">I build, shoot, and edit high-converting short-form videos — combining sharp direct-response pacing, dynamic typography, and generative AI workflows with the visual polish of traditional cinematography and studio photography. From directing and camera work on set to post-production, I manage the full workflow end-to-end. I move fast: daily publishing schedules, high-volume batch edits, and testing multiple hook variations per campaign are part of my standard week. I design for retention, conversion, and real output — without sacrificing visual standard.</p>
+  </section>
+
+  <div class="hero-role-scroll">
+    <div class="hero-role-track">Video Editor <span class="sep">|</span> Short-Form Video Creator <span class="sep">|</span> AI Artist <span class="sep">|</span> Visual Creator</div>
+  </div>
+
+  <section class="section-block" id="social">
+    <div class="section-head">
+      <h2>SOCIAL<span style="font-weight:900;">/</span><span class="serif-accent">ads</span></h2>
+      <p>Short-form content across brands and formats — product drops for a leather goods label, food content for a burger spot, city walking tours, and personal branding reels, shot and edited by me start to finish, each tuned to its own hook, pacing and platform.</p>
+    </div>
+    <div class="work-grid">
+      <div class="project">
+        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DapcrEMIK_X/" target="_blank" rel="noopener"><img src="images/img008.webp" alt="Barcelloniamo" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">Barcelloniamo</span><span class="year">(2026–Present)</span></div>
+        <p class="p-desc-text">Recurring content for a Barcelona walking tour company — real guides leading real groups through the Gothic Quarter, past the cathedral and into local folklore (a giant costumed eagle parade outside Bar del Pi), cut with word-by-word kinetic subtitles and highlighted keywords to hold attention on mobile with the sound off, edited to convert casual scrollers into bookings across Instagram and TikTok.</p>
+        <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Drive bookings &nbsp; <b>Format:</b> Organic &amp; paid ads</div>
+        <div class="p-desc-results">15.2K reach · 363 landing page views · $0.15 cost per result</div>
+      </div>
+      <div class="project">
+        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DbEUrUiIOUe/" target="_blank" rel="noopener"><img src="images/img005.webp" alt="Atelier Madre" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">Atelier Madre</span><span class="year">(2025–Present)</span></div>
+        <p class="p-desc-text">Daily Reels and TikToks edited for retention from frame one — macro shots of the hand-set rivets, the leather panel stamped with the brand's logo, and the edges being trimmed, cut with fast hooks to drive product clicks and DMs, blending studio shoots with AI-assisted editorial drops to keep the publishing pace relentless.</p>
+        <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Product clicks and DMs &nbsp; <b>AI assisted:</b> Yes</div>
+        <div class="p-desc-results">243K views · 74% retention at 3s · 914 likes</div>
+      </div>
+      <div class="project">
+        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DPvw0p-kreJ/" target="_blank" rel="noopener"><img src="images/img006.webp" alt="The Burger Maker" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">The Burger Maker</span><span class="year">(2025)</span></div>
+        <p class="p-desc-text">Direct response ads for a burger restaurant, built on satisfying macro close-ups — the patty pressed on the flat-top, the toasted bun, hand-sliced tomato, lettuce laid by hand — cut tight and fast to stop the scroll and convert views into orders through the link in bio.</p>
+        <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Drive orders &nbsp; <b>Format:</b> Vertical video ads</div>
+        <div class="p-desc-results">439K views · 792 likes · 39 shares</div>
+      </div>
+      <div class="project">
+        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/p/DSNDEtkCPY5/" target="_blank" rel="noopener"><img src="images/img007.webp" alt="Fantastik Frank x Booni" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">Fantastik Frank x Booni</span><span class="year">(2025)</span></div>
+        <p class="p-desc-text">Brand story film for Booni, a new concept store, produced in collaboration with real estate agency Fantastik Frank. Black-and-white archival-style footage and hand-written subtitles carry a personal story about the founder's mother, closing on the brand's "home is family" line — an emotional launch piece built to earn attention rather than interrupt it.</p>
+        <div class="p-desc-meta"><b>Platform:</b> Instagram &nbsp; <b>Objective:</b> Drive store visits &nbsp; <b>Client:</b> Fantastik Frank x Booni</div>
+      </div>
+      <div class="project">
+        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DCeS796tl9y/" target="_blank" rel="noopener"><img alt="Do You Feel It?" src="images/img009.webp" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">Do You Feel It?</span><span class="year">(2024)</span></div>
+        <p class="p-desc-text">Promotional edit for Edoardo Manzo, Italian surfskate champion and Yow ambassador — real tricks on a mini ramp and street skating cut to a warm, filmic color grade, with no dialogue or on-screen text, letting the movement and music carry the pacing to spotlight his skating and the partnership.</p>
+        <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Brand awareness &nbsp; <b>Client:</b> Yow / Edoardo Manzo</div>
+      </div>
+    </div>
+
+    <div class="ai-project-info" style="margin-top:60px; max-width:640px;">
+      <h3>Direct Response &amp; Short-Form Workflow</h3>
+      <p style="font-family:'Inter'; font-size:14px; color:#4a4640; line-height:1.6;">
+        <b>• Hook Analysis &amp; First-3-Second Rule:</b> Every edit starts with retention in mind — testing dynamic visual hooks, provocative text overlays, and audio cues before building the core script.<br><br>
+        <b>• Batch Editing &amp; Multi-Angle Testing:</b> I structure edits so a single core video can yield 3–5 different hook variations for Meta/TikTok testing with minimal friction.<br><br>
+        <b>• AI-Driven B-Roll &amp; Visuals:</b> When live footage is missing or limited, I generate custom B-roll, textures, and product elements in seconds using Weavy AI and Photoshop AI to keep the pacing relentless.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-block" id="ai">
+    <div class="section-head">
+      <h2>AI<span style="font-weight:900;">/</span><span class="serif-accent">generative</span></h2>
+      <p>Generative image and workflow design — from weekly editorial drops and on-brand e-commerce product shots to AI elements composited directly into live-action Reel edits, all built on a repeatable AI pipeline.</p>
+    </div>
+  <h3 style="font-family:'Inter'; font-weight:600; font-size:16px; margin-bottom:20px;">E-commerce</h3>
+  <div class="ai-scroll-row">
+    <div class="ai-side-image">
+      <img src="images/img010.webp" alt="Weavy AI canvas" loading="lazy">
+      <div class="ai-workflow-caption">Weavy AI canvas — reference stills alongside the flow.</div>
+    </div>
+    <div class="scroll-gallery-wrap">
+      <div class="scroll-gallery" id="ai-scroll">
+        <div class="scroll-item"><img src="images/img011.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img012.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img013.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img014.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img015.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img016.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img017.webp" alt="E-commerce" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img018.webp" alt="E-commerce" loading="lazy"></div>
+      </div>
+      <div class="scroll-arrows">
+        <button class="scroll-arrow" onclick="document.getElementById('ai-scroll').scrollBy({left:-300,behavior:'smooth'})" aria-label="Scroll left">←</button>
+        <button class="scroll-arrow" onclick="document.getElementById('ai-scroll').scrollBy({left:300,behavior:'smooth'})" aria-label="Scroll right">→</button>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Inter'; font-weight:600; font-size:16px; margin:100px 0 20px;">Editorial</h3>
+  <div class="ai-scroll-row">
+<div class="scroll-gallery-wrap">
+      <div class="scroll-gallery" id="ai-scroll-2">
+        <div class="scroll-item"><img src="images/img019.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img020.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img021.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img022.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img023.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img024.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img025.webp" alt="AI editorial" loading="lazy"></div>
+        <div class="scroll-item"><img src="images/img026.webp" alt="AI editorial" loading="lazy"></div>
+      </div>
+      <div class="scroll-arrows">
+        <button class="scroll-arrow" onclick="document.getElementById('ai-scroll-2').scrollBy({left:-300,behavior:'smooth'})" aria-label="Scroll left">←</button>
+        <button class="scroll-arrow" onclick="document.getElementById('ai-scroll-2').scrollBy({left:300,behavior:'smooth'})" aria-label="Scroll right">→</button>
+      </div>
+    </div>
+<div class="ai-side-image">
+      <img src="images/img027.webp" alt="Weavy AI canvas" loading="lazy">
+      <div class="ai-workflow-caption">Weavy AI canvas — reference stills alongside the flow.</div>
+    </div>
+  
+  </div>
+
+    <div class="ai-project-info">
+      <h3>Editorial Concepts &amp; Prompt-to-Publish Workflow</h3>
+      <p>Weekly generative image drops for the brand's editorial calendar — from prompt to finished asset, blending AI-generated models with real product photography. Twenty-seven-plus high-end images produced per launch, built on a repeatable Weavy AI workflow. Alongside the editorial drops, the same pipeline powers the e-commerce catalogue: clean, consistent product-on-model shots generated at scale for the online store, keeping every listing on-brand without a full studio shoot for each release.</p>
+      <div class="ai-project-meta">
+        <span><b>Year</b>2025–Present</span>
+        <span><b>Place</b>Barcelona</span>
+        <span><b>Brand</b>Atelier Madre</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Inter'; font-weight:600; font-size:16px; margin:100px 0 20px;">Video</h3>
+    <div class="ai-scroll-row">
+      <div class="ai-side-image">
+        <video src="video/ai-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="ai-workflow-caption">AI generated element composited into a live-action Reel edit.</div>
+      </div>
+      <div class="ai-project-info">
+        <h3>Mixing AI Into Live Edits</h3>
+        <p>On Atelier Madre's Reels, generative elements are composited directly into live-action footage during the edit itself, not swapped in as a separate asset. AI generated textures, color washes and motion overlays are timed to the cut, graded to match the brand's footage, and blended in DaVinci Resolve and After Effects so the AI layer reads as part of the shot, not on top of it. The same daily publishing pace applies here as with any other Reel: quick turnaround, consistent look, no extra production day. AI generated B-roll and textures also let me rapidly test multiple visual variations of the same edit without needing a new shoot day — useful for A/B testing hooks and openers at speed.</p>
+        <div class="ai-project-meta">
+          <span><b>Tools</b>Weavy AI, After Effects, DaVinci Resolve</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block" id="cinema">
+    <div class="section-head">
+      <h2>CINEMA<span style="font-weight:900;">/</span><span class="serif-accent">film</span></h2>
+      <p>Fashion film, short film and music video — direction, DP and editing. I work across the full production, from concept and shot list to color grade and final cut, with an eye for mood, movement and pacing that holds attention from the first frame.</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="project">
+        <div class="p-thumb" style="padding:0;"><a class="project-link" href="https://youtu.be/JWDrbjEvY_s?si=RmuIfPUknigoYpZd" target="_blank" rel="noopener"><img src="images/img002.webp" alt="Trovatemi Cesare!" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-caption"><span class="title">Trovatemi Cesare!</span><span class="year">(2025)</span></div>
+      </div>
+      <div class="project">
+        <div class="p-thumb" style="padding:0;"><img src="images/img003.webp" alt="Si Alza il Vento" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+        <div class="p-caption"><span class="title">Si Alza il Vento</span><span class="year">(2024)</span></div>
+      </div>
+      <div class="project">
+        <div class="p-thumb" style="padding:0;"><img src="images/img004.webp" alt="Le Rendez-Vous" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy"></div>
+        <div class="p-caption"><span class="title">Le Rendez-Vous</span><span class="year">(2023)</span></div>
+      </div>
+    </div>
+
+    <div class="showreel">
+      <a class="showreel-link" href="https://youtu.be/OBphwVz6SfU" target="_blank" rel="noopener noreferrer">
+        <div class="showreel-frame">
+          <img class="showreel-thumb" src="images/img001.webp" alt="Valeria De Rosa — Showreel" loading="lazy">
+          <div class="play-button">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </a>
+      <p class="showreel-caption">Watch my showreel here.</p>
+    </div>
+  </section>
+
+  <section class="section-block" id="photography">
+    <div class="section-head">
+      <h2>PHOTOGRAPHY<span style="font-weight:900;">/</span><span class="serif-accent">stills</span></h2>
+    </div>
+
+    <div class="photo-project-info">
+      <h3>Analog Photography</h3>
+      <span>(2024) — Fashion and documentary photography.</span>
+    </div>
+
+  <div class="masonry-grid">
+      <img src="images/img028.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img029.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img030.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img031.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img032.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img033.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img034.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img035.webp" alt="Analog Photography" loading="lazy">
+      <img src="images/img036.webp" alt="Analog Photography" loading="lazy">
+    </div>
+
+    <div class="photo-project-info">
+      <h3>Artisan Documentary</h3>
+      <span>(2026) &mdash; Process of bag production documented for Atelier Madre.</span>
+    </div>
+
+  <div class="masonry-grid">
+      <img src="images/img037.webp" loading="lazy">
+      <img src="images/img038.webp" loading="lazy">
+      <img src="images/img039.webp" loading="lazy">
+      <img src="images/img040.webp" loading="lazy">
+      <img src="images/img041.webp" loading="lazy">
+      <img src="images/img042.webp" loading="lazy">
+      <img src="images/img043.webp" loading="lazy">
+      <img src="images/img044.webp" loading="lazy">
+      <img src="images/img045.webp" loading="lazy">
+    </div>
+  </section>
+
+  <section class="about" id="skills">
+    <h2>SKILLS</h2>
+    <div class="skills-grid">
+      <div>
+        <div class="skills-label">Generative Models</div>
+        <div class="skill-item">Weavy AI<span class="note">daily driver for editorial &amp; e-commerce drops</span></div>
+        <div class="skill-item">Nano Banana Pro <span style="font-style:normal;">(Gemini 3)</span></div>
+        <div class="skill-item">Midjourney</div>
+        <div class="skill-item">ChatGPT-4o</div>
+        <div class="skill-item">Photoshop AI</div>
+        <div class="skill-item">Runway Gen-3</div>
+        <div class="skill-item">Sora 2</div>
+        <div class="skill-item">Kling 1.6</div>
+        <div class="skill-item">Google Veo 3</div>
+      </div>
+      <div>
+        <div class="skills-label">AI Pipeline &amp; Prompting</div>
+        <div class="skill-item">Prompt Engineering</div>
+        <div class="skill-item">Pipeline Design</div>
+        <div class="skill-item">Weavy AI Canvas<span class="note">node-based, reference-driven workflows</span></div>
+        <div class="skill-item">Batch Editorial Production</div>
+      </div>
+      <div>
+        <div class="skills-label">Post-Production</div>
+        <div class="skill-item">Direct Response Video Editing &amp; SFX</div>
+        <div class="skill-item">Adobe Premiere Pro</div>
+        <div class="skill-item">DaVinci Resolve</div>
+        <div class="skill-item">After Effects</div>
+        <div class="skill-item">Photoshop, Lightroom, InDesign, Illustrator</div>
+      </div>
+      <div>
+        <div class="skills-label">Camera &amp; Analog</div>
+        <div class="skill-item">BMPCC, RED, Sony, Canon</div>
+        <div class="skill-item">Canon AE1, Rolleicord, Yashica</div>
+      </div>
+      <div>
+        <div class="skills-label">Creative Coding &amp; Strategy</div>
+        <div class="skill-item">Resolume Arena, Processing</div>
+        <div class="skill-item">Short-form strategy<span class="note">social analytics, newsletter layout &amp; visuals</span></div>
+      </div>
+      <div>
+        <div class="skills-label">Languages</div>
+        <div class="skill-item">Italian (native)</div>
+        <div class="skill-item">English (C1)</div>
+        <div class="skill-item">Spanish (B2)<span class="note">multilingual subtitling &amp; caption workflows</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer id="contact">
+  <div class="big">Let's <span class="serif-accent">work</span>.</div>
+  <div class="links">
+    <a href="mailto:valeriaderosa029@gmail.com">EMAIL</a>
+    <a href="https://www.linkedin.com/in/valeria-de-rosa-388494330/" target="_blank" rel="noopener">LINKEDIN</a>
+    <span>Barcelona, Spain</span>
+  </div>
+</footer>
+
+<div class="copyright">© 2026 Valeria De Rosa</div>
+
+</body>
+</html>
