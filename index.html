@@ -19,6 +19,40 @@
   *{ margin:0; padding:0; box-sizing:border-box; }
   html{ overflow-x: hidden; }
 
+  /* PROJECT MODAL */
+  .project-modal{
+    position: fixed; inset: 0; z-index: 999;
+    display: none; align-items: center; justify-content: center;
+    background: rgba(23,21,15,0.72);
+    padding: 24px;
+  }
+  .project-modal.is-open{ display: flex; }
+  .project-modal-inner{
+    background: var(--bg); border-radius: 16px; max-width: 720px; width: 100%;
+    max-height: 88vh; overflow-y: auto; position: relative;
+    padding: 28px 28px 32px;
+  }
+  .project-modal-close{
+    position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+    border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; color: var(--fg); line-height: 1;
+  }
+  .project-modal video{
+    width: 100%; max-width: 300px; border-radius: 10px; display: block; margin: 0 auto 18px;
+    background: #000;
+  }
+  .project-modal h3{ font-family:'Inter'; font-weight:600; font-size:17px; margin-bottom:10px; }
+  .project-modal p{ font-family:'Inter'; font-size:14px; color:#4a4640; line-height:1.6; margin-bottom:16px; }
+  .project-modal .modal-links{ display:flex; gap:16px; font-family:'Special Elite', monospace; font-size:12px; }
+  .project-modal .modal-links a{ text-decoration:underline; color: var(--fg); }
+  .ig-embed-grid{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px;
+  }
+  .ig-embed-grid iframe{ width:100% !important; min-width:0 !important; }
+  .ig-embed-grid > blockquote.instagram-media{ margin:0 !important; min-width:0 !important; width:100% !important; }
+  @media (max-width:520px){ .ig-embed-grid{ grid-template-columns: 1fr; } }
+
   body{
     background: var(--bg);
     color: var(--fg);
@@ -342,19 +376,19 @@
       <div class="project">
         <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DapcrEMIK_X/" target="_blank" rel="noopener"><img src="images/img008.webp" alt="Barcelloniamo" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
         <div class="p-caption"><span class="title">Barcelloniamo</span><span class="year">(2026–Present)</span></div>
-        <p class="p-desc-text">Recurring content for a Barcelona walking tour company — real guides leading real groups through the Gothic Quarter, past the cathedral and into local folklore (a giant costumed eagle parade outside Bar del Pi), cut with word-by-word kinetic subtitles and highlighted keywords to hold attention on mobile with the sound off, edited to convert casual scrollers into bookings across Instagram and TikTok.</p>
+        <p class="p-desc-text">Recurring content for a Barcelona walking tour company — a newer, growing profile still building its audience — real guides leading real groups through the Gothic Quarter, past the cathedral and into local folklore (the costumed eagle parade outside Bar del Pi), cut with word-by-word kinetic subtitles and highlighted keywords for sound-off viewing, edited to convert scrollers into bookings on Instagram and TikTok.</p>
         <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Drive bookings &nbsp; <b>Format:</b> Organic &amp; paid ads</div>
         <div class="p-desc-results">15.2K reach · 363 landing page views · $0.15 cost per result</div>
       </div>
       <div class="project">
-        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DbEUrUiIOUe/" target="_blank" rel="noopener"><img src="images/img005.webp" alt="Atelier Madre" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-thumb social-thumb"><a class="project-link" href="javascript:void(0)" onclick="openProjectModal('atelier-modal')"><img src="images/img005.webp" alt="Atelier Madre" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
         <div class="p-caption"><span class="title">Atelier Madre</span><span class="year">(2025–Present)</span></div>
-        <p class="p-desc-text">Daily Reels and TikToks edited for retention from frame one — macro shots of the hand-set rivets, the leather panel stamped with the brand's logo, and the edges being trimmed, cut with fast hooks to drive product clicks and DMs, blending studio shoots with AI-assisted editorial drops to keep the publishing pace relentless.</p>
+        <p class="p-desc-text">A high-frequency stream of Reels and TikToks for Atelier Madre, each opening on a fast hook to earn attention before driving product clicks and DMs. I mix real studio shoots with AI-generated visuals to hit a daily publishing schedule without needing a new shoot for every post.</p>
         <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Product clicks and DMs &nbsp; <b>AI assisted:</b> Yes</div>
-        <div class="p-desc-results">243K views · 74% retention at 3s · 914 likes</div>
+        <div class="p-desc-results">100K–2M views across the brand's Reels · some run as paid ads</div>
       </div>
       <div class="project">
-        <div class="p-thumb social-thumb"><a class="project-link" href="https://www.instagram.com/reel/DPvw0p-kreJ/" target="_blank" rel="noopener"><img src="images/img006.webp" alt="The Burger Maker" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
+        <div class="p-thumb social-thumb"><a class="project-link" href="javascript:void(0)" onclick="openProjectModal('burger-modal')"><img src="images/img006.webp" alt="The Burger Maker" loading="lazy"><div class="link-overlay"><div class="link-play"><svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></div></a></div>
         <div class="p-caption"><span class="title">The Burger Maker</span><span class="year">(2025)</span></div>
         <p class="p-desc-text">Direct response ads for a burger restaurant, built on satisfying macro close-ups — the patty pressed on the flat-top, the toasted bun, hand-sliced tomato, lettuce laid by hand — cut tight and fast to stop the scroll and convert views into orders through the link in bio.</p>
         <div class="p-desc-meta"><b>Platform:</b> Instagram, TikTok &nbsp; <b>Objective:</b> Drive orders &nbsp; <b>Format:</b> Vertical video ads</div>
@@ -603,6 +637,68 @@
 </footer>
 
 <div class="copyright">© 2026 Valeria De Rosa</div>
+
+<div class="project-modal" id="atelier-modal">
+  <div class="project-modal-inner">
+    <div class="project-modal-close" onclick="closeProjectModal('atelier-modal')">&times;</div>
+    <h3>Atelier Madre — Organic and Paid Ad Reel</h3>
+    <p>A recurring format built around craft — sketching a new shape, gluing and hand-stitching the leather, right through to the finished bag, filmed alongside the brand's founder.</p>
+
+    <h3 style="margin-top:28px;">Watch on Instagram</h3>
+    <div class="ig-embed-grid">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DUfqdnZiCVz/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPRkg9yiHmT/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DM3NhHxIq1w/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DKPv0KmoZch/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbEUrUiIOUe/" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+</div>
+
+<div class="project-modal" id="burger-modal">
+  <div class="project-modal-inner">
+    <div class="project-modal-close" onclick="closeProjectModal('burger-modal')">&times;</div>
+    <h3>The Burger Maker — Ad Reels</h3>
+    <p>Direct response ads for a burger restaurant, each built on a satisfying macro close-up and a fast, tight cut designed to stop the scroll and convert views into orders through the link in bio.</p>
+
+    <h3 style="margin-top:28px;">Watch on Instagram</h3>
+    <div class="ig-embed-grid">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DPvw0p-kreJ/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DNfbxLkI40J/" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+</div>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+function openProjectModal(id){
+  document.getElementById(id).classList.add('is-open');
+  const v = document.querySelector('#' + id + ' video');
+  if(v){ v.currentTime = 0; v.play().catch(()=>{}); }
+  document.body.style.overflow = 'hidden';
+  if(window.instgrm && window.instgrm.Embeds){
+    window.instgrm.Embeds.process();
+  }
+}
+function closeProjectModal(id){
+  document.getElementById(id).classList.remove('is-open');
+  const v = document.querySelector('#' + id + ' video');
+  if(v){ v.pause(); }
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.project-modal.is-open').forEach(function(m){
+      closeProjectModal(m.id);
+    });
+  }
+});
+document.querySelectorAll('.project-modal').forEach(function(modal){
+  modal.addEventListener('click', function(e){
+    if(e.target === modal){ closeProjectModal(modal.id); }
+  });
+});
+</script>
 
 </body>
 </html>
