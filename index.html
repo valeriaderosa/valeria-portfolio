@@ -152,7 +152,7 @@
     transform: translateX(0) rotate(-4deg);
   }
   @media (max-width: 900px){
-    .hero-photo-trigger{ width: 60%; height: 420px; cursor: pointer; }
+    .hero-photo-trigger{ top: 40px; right: 18px; width: 54px; height: 54px; cursor: pointer; }
     .hero-photo-reveal{ width: 130px; top: 10px; right: 20px; }
     .hero-photo-reveal2{ width: 150px; top: 190px; right: 110px; }
     .hero-photo-reveal3{ width: 160px; top: 220px; right: 10px; }
@@ -178,7 +178,7 @@
   .hero-role-track{
     font-family:'Inter'; font-weight:600; text-transform:uppercase; letter-spacing:0.02em;
     font-size: clamp(38px, 7.5vw, 84px); line-height:1; color:var(--fg); opacity:0.2;
-    white-space:nowrap; display:inline-block; padding: 0 32px 0 32px;
+    white-space:nowrap; display:inline-block; padding: 0 32px 0 0;
   }
   .hero-role-track .sep{ opacity:0.6; margin:0 0.35em; }
   .hero-sub{
@@ -326,8 +326,9 @@
 
   @media (max-width: 900px){
     nav{ flex-direction:column; gap:12px; align-items:flex-start; padding: 18px 20px; }
-    .nav-links{ font-size:11px; letter-spacing:0.02em; line-height:2; }
-    .nav-links a{ margin-right: 14px; }
+    .logo{ width:100%; text-align:center; }
+    .nav-links{ font-size:10px; letter-spacing:0.01em; line-height:1.8; }
+    .nav-links a{ margin-right: 10px; }
     .cta-link{ font-size:12px; }
   }
 
@@ -362,7 +363,6 @@
   <div class="nav-links">
     <a href="#social" class="on">Social</a> <a href="#ai">AI</a> <a href="#cinema">Cinema</a> <a href="#photography">Photography</a> <a href="#skills">Skills</a> <a href="#contact">Contacts</a>
   </div>
-  <a href="mailto:valeriaderosa029@gmail.com" class="cta-link">Send me a message</a>
 </nav>
 
 <div class="wrap">
