@@ -108,7 +108,9 @@
     50%{ border-radius: 48% 52% 38% 62% / 62% 48% 52% 38%; }
     75%{ border-radius: 55% 45% 58% 42% / 45% 55% 40% 60%; }
   }
-  @media (max-width: 900px){ .hero-orb{ display:none; } }
+  @media (max-width: 900px){
+    .hero-orb{ top: 40px; right: 18px; width: 34px; height: 34px; }
+  }
   .hero-photo-trigger{
     position: absolute; top: 40px; right: 0; width: 45%; height: 520px;
     z-index: 5;
@@ -137,23 +139,32 @@
     pointer-events: none;
   }
   .hero-photo-reveal3 img{ width:100%; display:block; border-radius:6px; }
-  .hero-photo-trigger:hover ~ .hero-photo-reveal{
+  .hero-photo-trigger:hover ~ .hero-photo-reveal,
+  .hero-photo-trigger.is-tapped ~ .hero-photo-reveal{
     transform: translateX(0) rotate(-6deg);
   }
-  .hero-photo-trigger:hover ~ .hero-photo-reveal2{
+  .hero-photo-trigger:hover ~ .hero-photo-reveal2,
+  .hero-photo-trigger.is-tapped ~ .hero-photo-reveal2{
     transform: translateX(0) rotate(6deg);
   }
-  .hero-photo-trigger:hover ~ .hero-photo-reveal3{
+  .hero-photo-trigger:hover ~ .hero-photo-reveal3,
+  .hero-photo-trigger.is-tapped ~ .hero-photo-reveal3{
     transform: translateX(0) rotate(-4deg);
   }
   @media (max-width: 900px){
-    .hero-photo-trigger, .hero-photo-reveal, .hero-photo-reveal2, .hero-photo-reveal3{ display:none; }
+    .hero-photo-trigger{ width: 60%; height: 420px; cursor: pointer; }
+    .hero-photo-reveal{ width: 130px; top: 10px; right: 20px; }
+    .hero-photo-reveal2{ width: 150px; top: 190px; right: 110px; }
+    .hero-photo-reveal3{ width: 160px; top: 220px; right: 10px; }
   }
   .hero h1{
     font-family:'Archivo'; font-weight:900; letter-spacing:-0.02em;
     font-size: clamp(48px, 9vw, 108px);
     line-height: 0.95;
     display:flex; align-items:baseline; flex-wrap:wrap;
+  }
+  @media (max-width: 600px){
+    .hero h1{ font-size: clamp(26px, 9.5vw, 108px); white-space: nowrap; }
   }
   .serif-accent{ font-family:'Fraunces'; font-style:italic; font-weight:500; letter-spacing:0; color: inherit; }
   .hero h1 .serif-accent{ letter-spacing:0; }
@@ -314,7 +325,10 @@
   }
 
   @media (max-width: 900px){
-    nav{ flex-direction:column; gap:12px; align-items:flex-start; }
+    nav{ flex-direction:column; gap:12px; align-items:flex-start; padding: 18px 20px; }
+    .nav-links{ font-size:11px; letter-spacing:0.02em; line-height:2; }
+    .nav-links a{ margin-right: 14px; }
+    .cta-link{ font-size:12px; }
   }
 
   /* SKILLS */
@@ -689,6 +703,22 @@
 </div>
 
 <script async src="https://www.instagram.com/embed.js"></script>
+<script>
+(function(){
+  var trigger = document.querySelector('.hero-photo-trigger');
+  if(trigger){
+    trigger.addEventListener('click', function(){
+      trigger.classList.toggle('is-tapped');
+    });
+    document.addEventListener('click', function(e){
+      if(trigger.classList.contains('is-tapped') && !trigger.contains(e.target) && e.target !== trigger){
+        var isPhoto = e.target.closest('.hero-photo-reveal, .hero-photo-reveal2, .hero-photo-reveal3');
+        if(!isPhoto){ trigger.classList.remove('is-tapped'); }
+      }
+    });
+  }
+})();
+</script>
 <script>
 function openProjectModal(id){
   document.getElementById(id).classList.add('is-open');
